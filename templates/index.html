@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="full-length-div">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="image">
+    </div>
+    <div class="upload-box">
+        <h1>Input</h1>
+        <!-- File input -->
+        <div class="file-input">
+            <form id="upload-form" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" id="file" name="file">
+                <!-- Display area for upload status -->
+                <div id="upload-status"></div>
+                <!-- Submit button -->
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <!-- Checkboxes for focus options -->
+        <div class="focus-options">
+            <label><input type="checkbox" name="focus" value="shallow">Shallow Focus</label>
+            <label><input type="checkbox" name="focus" value="deep">Deep Focus</label>
+            <!-- Confirm button -->
+            <button id="confirm-button">Confirm</button>
+        </div>
+    </div>
+
+    <!-- JavaScript code for handling form submission -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Function to handle form submission
+            $("#upload-form").submit(function(event){
+                event.preventDefault(); // Prevent default form submission
+
+                var formData = new FormData($(this)[0]); // Create FormData object with form data
+
+                // Send the formData to the server using AJAX
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Display success message
+                        $("#upload-status").text(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Display error message
+                        $("#upload-status").text("Upload failed. Please try again.");
+                    }
+                });
+            });
+
+            // Function to ensure only one checkbox is checked at a time
+            $("input[name='focus']").change(function() {
+                $("input[name='focus']").not(this).prop('checked', false);
+            });
+
+            // Function to handle confirm button click
+            $("#confirm-button").click(function() {
+                var selectedOption = $("input[name='focus']:checked").val();
+                if (selectedOption) {
+                    // Send the selected option to the server
+                    $.ajax({
+                        url: '/update_focus',
+                        type: 'POST',
+                        data: { focus_option: selectedOption },
+                        success: function(response) {
+                            console.log(response); // Log the response from the server
+                            alert("Focus option confirmed successfully."); // Display confirmation message
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error); // Log any errors
+                            alert("An error occurred. Please try again."); // Display error message
+                        }
+                    });
+                } else {
+                    alert("Please select a focus option.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

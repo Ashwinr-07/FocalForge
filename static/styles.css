@@ -1,0 +1,26 @@
+/* styles.css */
+
+/* Style for the full-length yellow div */
+.full-length-div {
+    width: 100%;
+    height: 400px; /* Adjusted height of the yellow div */
+    background-color: rgb(247, 202, 77);
+    position: relative;
+}
+
+/* Style for the logo image */
+.image {
+    position: absolute;
+    top: 50%;
+    right: 100px; /* Position the logo 400 pixels from the right edge */
+    transform: translateY(-50%); /* Vertically center the logo */
+    max-width: 300px; /* Adjusted size of the logo */
+}
+
+/* Style for the upload box */
+.upload-box {
+    margin-top: 20px; /* Add margin between the yellow div and upload box */
+    text-align: center; /* Center align the upload box */
+}
+
+/* Add additional styles below if needed */
