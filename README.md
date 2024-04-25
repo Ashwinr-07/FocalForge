@@ -54,7 +54,7 @@ These metrics provide quantitative measures of image similarity and quality, fac
 
 ![Animated GIF](https://github.com/Ashwinr-07/FocalForge/raw/main/static/ezgif.com-animated-gif-maker.gif)
 
-
+![](static/ezgif.com-animated-gif-maker.gif)
 
 
 
