@@ -52,7 +52,9 @@ The project explores several evaluation metrics to assess the quality of refocus
 
 These metrics provide quantitative measures of image similarity and quality, facilitating comparison between original and refocused images.
 
-![Uploading ezgif-4-f88fb86abd.gif…]()
+![Animated GIF](https://github.com/your_username/your_repository/raw/main/static/your_gif.gif)
+https://github.com/Ashwinr-07/FocalForge/raw/main/static/ezgif.com-animated-gif-maker.gif
+
 
 
 
